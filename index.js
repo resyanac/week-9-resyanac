@@ -20,7 +20,7 @@ const commonResponse = function (data, error) {
 };
 
 
-const mysqlCon = mysql.createConnection({
+const mysqlConDev = mysql.createConnection({
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT,
     user: process.env.MYSQL_USER,
@@ -39,6 +39,14 @@ mysqlConProduction.connect((err) => {
         throw err
     }
     console.log("Database connected Railway")
+});
+
+const mysqlCon = mysql.createConnection({
+    host: process.env.MYSQL_HOST_PRODUCTION,
+    port: process.env.MYSQL_PORT_PRODUCTION,
+    user: process.env.MYSQL_USER_PRODUCTION,
+    password: process.env.MYSQL_PASS_PRODUCTION,
+    database: process.env.MYSQL_DATABASE_PRODUCTION
 });
 
 mysqlCon.connect((err) => {
@@ -177,7 +185,7 @@ app.put('/transaction/:id', async (request, response) => {
         }
     )
 });
-
+ 
 app.delete('/transaction/:id', async (request, response) => {
     const id = request.params.id;
     mysqlCon.query(
