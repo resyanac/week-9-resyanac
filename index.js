@@ -28,10 +28,13 @@ const mysqlConDev = mysql.createConnection({
     database: process.env.MYSQL_DATABASE
 });
 
-const mysqlCon = mysql.createConnection(
-    // `${process.env.MYSQL_RAILWAY}`
-    "mysql://root:qFGk998vGReqxZ4Z8tsC@containers-us-west-81.railway.app:7310/railway"
-);
+const mysqlCon = mysql.createConnection({
+    host: process.env.MYSQL_HOST_PRODUCTION,
+    port: process.env.MYSQL_PORT_PRODUCTION,
+    user: process.env.MYSQL_USER_PRODUCTION,
+    password: process.env.MYSQL_PASS_PRODUCTION,
+    database: process.env.MYSQL_DATABASE_PRODUCTION
+});
 
 
 // mysqlConProduction.connect((err) => {
