@@ -20,14 +20,6 @@ const commonResponse = function (data, error) {
 };
 
 
-const mysqlConDev = mysql.createConnection({
-    host: process.env.MYSQL_HOST,
-    port: process.env.MYSQL_PORT,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASS,
-    database: process.env.MYSQL_DATABASE
-});
-
 const mysqlCon = mysql.createConnection({
     host: process.env.MYSQL_HOST_PRODUCTION,
     port: process.env.MYSQL_PORT_PRODUCTION,
@@ -37,21 +29,6 @@ const mysqlCon = mysql.createConnection({
 });
 
 
-// mysqlConProduction.connect((err) => {
-//     if (err) { 
-//         throw err
-//     }
-//     console.log("Database connected Railway")
-// });
-
-// const mysqlCon = mysql.createConnection({
-//     host: process.env.MYSQL_HOST_PRODUCTION,
-//     port: process.env.MYSQL_PORT_PRODUCTION,
-//     user: process.env.MYSQL_USER_PRODUCTION,
-//     password: process.env.MYSQL_PASS_PRODUCTION,
-//     database: process.env.MYSQL_DATABASE
-// });
-
 mysqlCon.connect((err) => {
     if (err) { 
         return console.log(err)
@@ -59,33 +36,13 @@ mysqlCon.connect((err) => {
     console.log("Database connected railway")
 });
 
-// async function checkConnection() {
-//     try {
-//         const connection = await mysqlCon.connect();
-//         console.log("database connected")
-//     }
-//     catch (err){ 
-//         console.log(err)
-//     }
-// }
-
-// checkConnection()
-
-const query = (query, values) => {
-    return new Promise((resolve, reject) => {
-        mysqlCon.query(query, values, (err, result, fields) => {
-            if (err) {
-                reject(err)
-            } else {
-                resolve(result)
-            }
-        })
-    })
-}
-
-
-
 app.use(bodyParser.json())
+
+
+app.get('/', (request, response) => {
+    response.status(200).send("Hello world !")
+}); 
+
 
 app.get('/user', (request, response) => {
     console.log("masuk")
