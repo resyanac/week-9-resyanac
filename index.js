@@ -28,32 +28,32 @@ const mysqlConDev = mysql.createConnection({
     database: process.env.MYSQL_DATABASE
 });
 
-const mysqlConProduction = mysql.createConnection(
+const mysqlCon = mysql.createConnection(
     // `${process.env.MYSQL_RAILWAY}`
     "mysql://root:qFGk998vGReqxZ4Z8tsC@containers-us-west-81.railway.app:7310/railway"
 );
 
 
-mysqlConProduction.connect((err) => {
-    if (err) { 
-        throw err
-    }
-    console.log("Database connected Railway")
-});
+// mysqlConProduction.connect((err) => {
+//     if (err) { 
+//         throw err
+//     }
+//     console.log("Database connected Railway")
+// });
 
-const mysqlCon = mysql.createConnection({
-    host: process.env.MYSQL_HOST_PRODUCTION,
-    port: process.env.MYSQL_PORT_PRODUCTION,
-    user: process.env.MYSQL_USER_PRODUCTION,
-    password: process.env.MYSQL_PASS_PRODUCTION,
-    database: process.env.MYSQL_DATABASE_PRODUCTION
-});
+// const mysqlCon = mysql.createConnection({
+//     host: process.env.MYSQL_HOST_PRODUCTION,
+//     port: process.env.MYSQL_PORT_PRODUCTION,
+//     user: process.env.MYSQL_USER_PRODUCTION,
+//     password: process.env.MYSQL_PASS_PRODUCTION,
+//     database: process.env.MYSQL_DATABASE
+// });
 
 mysqlCon.connect((err) => {
     if (err) { 
         return console.log(err)
     }
-    console.log("Database connected dev")
+    console.log("Database connected railway")
 });
 
 // async function checkConnection() {
